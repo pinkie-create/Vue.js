@@ -16,6 +16,24 @@
       >
         {{ operand }}
       </button>
+      <br />
+      <input
+        type="checkbox"
+        id="keyboard"
+        value="Клавиатура"
+        v-model="checked"
+      />
+      <label for="keyboard">Отобразить экранную клавиатуру</label>
+      <div v-if="checked">
+        <button
+          class="btn"
+          v-for="keyboard in keyboards"
+          :key="keyboard"
+          @click="enterKeyboard(keyboard)"
+        >
+          {{ keyboard }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -35,6 +53,8 @@ export default {
       operand1: 0,
       operand2: 0,
       result: 0,
+      checked: "",
+      keyboards: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     };
   },
   methods: {
@@ -89,6 +109,8 @@ export default {
     floor() {
       this.result = Math.floor(this.operand1 / this.operand2);
     },
+    // enterKeyboard(keyboard) {
+    // },
   },
 };
 </script>
