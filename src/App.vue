@@ -29,7 +29,7 @@
 // // import HelloWorld from "./components/HelloWorld.vue";
 // import AddPaymentForm from "./components/AddPaymentForm.vue";
 // import PaymentsDisplay from "./components/PaymentsDisplay.vue";
-// import { mapMutations, mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 // import Pagination from "./components/Pagination.vue";
 
 export default {
@@ -49,12 +49,16 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["fetchData"]),
     goToPageNotFound() {
       if (this.$route.name === "notfound") return;
       this.$router.push({
         name: "notfound",
       });
     },
+  },
+  async created() {
+    await this.fetchData(1);
   },
 };
 </script>

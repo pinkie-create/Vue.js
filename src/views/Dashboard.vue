@@ -2,7 +2,7 @@
   <main>
     <add-payment-form />
     <payments-display :items="currentElements" />
-    <pagination :cur="page" :n="n" :length="6" @paginate="changePage" />
+    <pagination :cur="page" :n="n" :length="15" @paginate="changePage" />
   </main>
 </template>
 
@@ -42,7 +42,10 @@ export default {
     },
   },
   async created() {
-    await this.fetchData(1);
+    // if (!PaymentList.length) {
+    //   await this.fetchData();
+    // }
+    // await this.fetchData(1);
     if (this.$route.params?.page) {
       this.page = Number(this.$route.params.page);
     }

@@ -53,9 +53,14 @@ export default {
     },
   },
   async mounted() {
-    if (!this.getCategoryList?.length) {
-      await this.fetchCategory();
-      this.category = this.categoryList[0];
+    await this.fetchCategory();
+    if (!this.category) {
+      if (this.$route.params?.category) {
+        this.category = this.$route.params && this.$route.params.category;
+      }
+      if (this.$route.query?.value) {
+        this.value = this.$route.query.value;
+      }
     }
   },
 };
